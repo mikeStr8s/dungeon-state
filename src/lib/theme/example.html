@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#1a1b26" />
+        <title>Terminal Theme — Living Style Guide</title>
+
+        <!-- Sibling CSS: relative paths work wherever this folder is copied -->
+        <link rel="stylesheet" href="./reset.css" />
+        <link rel="stylesheet" href="./theme.css" />
+
+        <!-- External dep: Font Awesome (icons). Swap for your own kit. -->
+        <script
+            src="https://kit.fontawesome.com/07edaf5df6.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <style>
+            /* Page-local layout only — NOT part of the theme. Kept minimal so
+               the page itself demonstrates the theme, not bespoke styling. */
+            main {
+                width: min(100%, 900px);
+                margin: 0 auto;
+                padding: var(--margin-l);
+                display: flex;
+                flex-direction: column;
+                gap: var(--margin-xl);
+            }
+            section {
+                display: flex;
+                flex-direction: column;
+                gap: var(--margin-s);
+            }
+            section > h2 {
+                border-bottom: var(--border-w) solid var(--color-border);
+                padding-bottom: var(--margin-xxs);
+            }
+            .swatches {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: var(--margin-xs);
+            }
+            .swatch {
+                border: var(--border-w) solid var(--color-border);
+            }
+            .swatch .chip-block {
+                height: 3rem;
+            }
+            .swatch .meta {
+                padding: var(--margin-xxs) var(--margin-xs);
+            }
+            .swatch .name {
+                color: var(--color-text-primary);
+            }
+            .scale-row {
+                display: flex;
+                align-items: center;
+                gap: var(--margin-s);
+            }
+            .scale-bar {
+                height: 0.75rem;
+                background-color: var(--color-blue);
+            }
+            .scale-label {
+                color: var(--color-text-muted);
+                white-space: nowrap;
+            }
+            .type-token {
+                color: var(--color-text-subtle);
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <h1>Terminal Theme</h1>
+                <p class="small">
+                    Living style guide — every token, base element, and component
+                    class rendered from
+                    <code>reset.css</code> + <code>theme.css</code>. Copy this
+                    folder into any project and open this file.
+                </p>
+            </header>
+
+            <!-- ============================================================
+                 1. COLOR PALETTE
+            ============================================================= -->
+            <section>
+                <h2>Color palette</h2>
+                <div class="swatches">
+                    <!-- Backgrounds -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-bg-main)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-bg-main</div>
+                            <div class="smaller">#1a1b26</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-bg-secondary)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-bg-secondary</div>
+                            <div class="smaller">#414868</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-bg-elevated)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-bg-elevated</div>
+                            <div class="smaller">#565f89</div>
+                        </div>
+                    </div>
+
+                    <!-- Text -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-text-primary)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-text-primary</div>
+                            <div class="smaller">#c0caf5</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-text-secondary)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-text-secondary</div>
+                            <div class="smaller">#a9b1d6</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-text-muted)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-text-muted</div>
+                            <div class="smaller">#9aa5ce</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-text-subtle)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-text-subtle</div>
+                            <div class="smaller">#565f89</div>
+                        </div>
+                    </div>
+
+                    <!-- Accents -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-red)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-red</div>
+                            <div class="smaller">#f7768e</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-orange)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-orange</div>
+                            <div class="smaller">#ff9e64</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-yellow)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-yellow</div>
+                            <div class="smaller">#e0af68</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-green)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-green</div>
+                            <div class="smaller">#9ece6a</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-teal)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-teal</div>
+                            <div class="smaller">#73dacb</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-cyan)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-cyan</div>
+                            <div class="smaller">#2ac3de</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-cyan-light)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-cyan-light</div>
+                            <div class="smaller">#b4f9f8</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-blue)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-blue</div>
+                            <div class="smaller">#7aa2f7</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-blue-light)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-blue-light</div>
+                            <div class="smaller">#7dcfff</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-purple)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-purple</div>
+                            <div class="smaller">#bb9af7</div>
+                        </div>
+                    </div>
+
+                    <!-- UI / borders -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-border)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-border</div>
+                            <div class="smaller">#414868</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-border-strong)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-border-strong</div>
+                            <div class="smaller">#565f89</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-focus)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-focus</div>
+                            <div class="smaller">#7aa2f7</div>
+                        </div>
+                    </div>
+
+                    <!-- States -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-success)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-success</div>
+                            <div class="smaller">#9ece6a</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-success-light)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-success-light</div>
+                            <div class="smaller">#c3e88d</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-warning)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-warning</div>
+                            <div class="smaller">#e0af68</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-error)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-error</div>
+                            <div class="smaller">#f7768e</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-error-light)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-error-light</div>
+                            <div class="smaller">#ff9e9e</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-info)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-info</div>
+                            <div class="smaller">#2ac3de</div>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-link)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-link</div>
+                            <div class="smaller">#7dcfff</div>
+                        </div>
+                    </div>
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-link-hover)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-link-hover</div>
+                            <div class="smaller">#2ac3de</div>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder -->
+                    <div class="swatch">
+                        <div
+                            class="chip-block"
+                            style="background: var(--color-placeholder)"
+                        ></div>
+                        <div class="meta">
+                            <div class="name smaller">--color-placeholder</div>
+                            <div class="smaller">#565f89</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 2. SPACING SCALE
+            ============================================================= -->
+            <section>
+                <h2>Spacing scale</h2>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-xxs)"></div>
+                    <span class="scale-label smaller">--margin-xxs · 0.25rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-xs)"></div>
+                    <span class="scale-label smaller">--margin-xs · 0.5rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-s)"></div>
+                    <span class="scale-label smaller">--margin-s · 0.75rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-m)"></div>
+                    <span class="scale-label smaller">--margin-m · 1rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-l)"></div>
+                    <span class="scale-label smaller">--margin-l · 1.25rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-xl)"></div>
+                    <span class="scale-label smaller">--margin-xl · 1.75rem</span>
+                </div>
+                <div class="scale-row">
+                    <div class="scale-bar" style="width: var(--margin-xxl)"></div>
+                    <span class="scale-label smaller">--margin-xxl · 2.5rem</span>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 3. TYPE SCALE
+            ============================================================= -->
+            <section>
+                <h2>Type scale</h2>
+                <h1>H1 heading <span class="type-token smaller">--h1</span></h1>
+                <h2>H2 heading <span class="type-token smaller">--h2</span></h2>
+                <h3>H3 heading <span class="type-token smaller">--h3</span></h3>
+                <h4>H4 heading <span class="type-token smaller">--h4</span></h4>
+                <h5>H5 heading <span class="type-token smaller">--h5</span></h5>
+                <h6>H6 heading <span class="type-token smaller">--h6</span></h6>
+                <p class="big">Big body text <span class="type-token">.big</span></p>
+                <p>Paragraph body text <span class="type-token">p / --p</span></p>
+                <p class="small">Small text <span class="type-token">.small</span></p>
+                <p class="smaller">
+                    Smaller text <span class="type-token">.smaller</span>
+                </p>
+            </section>
+
+            <!-- ============================================================
+                 4. BASE HTML ELEMENTS
+            ============================================================= -->
+            <section>
+                <h2>Base HTML elements</h2>
+                <p>
+                    A paragraph with an <a href="#">inline link</a>,
+                    <strong>strong text</strong>, <em>emphasis</em>, and
+                    <code>inline code</code>. Body font is JetBrains Mono.
+                </p>
+
+                <h5>Unordered list</h5>
+                <ul>
+                    <li>First list item</li>
+                    <li>Second list item</li>
+                    <li>Third list item</li>
+                </ul>
+
+                <h5>Ordered list</h5>
+                <ol>
+                    <li>Step one</li>
+                    <li>Step two</li>
+                    <li>Step three</li>
+                </ol>
+
+                <h5>Table</h5>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Initiative</th>
+                            <th>HP</th>
+                            <th>AC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Goblin</td>
+                            <td>18</td>
+                            <td>7 / 7</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>Wolf</td>
+                            <td>14</td>
+                            <td>11 / 11</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>Bandit Captain</td>
+                            <td>9</td>
+                            <td>65 / 65</td>
+                            <td>15</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <hr />
+
+                <blockquote>
+                    A blockquote for longer reference text or flavor.
+                </blockquote>
+            </section>
+
+            <!-- ============================================================
+                 5. BUTTONS
+            ============================================================= -->
+            <section>
+                <h2>Buttons</h2>
+                <div class="flex row wrap gap-xs align-center">
+                    <button>Primary</button>
+                    <button class="secondary">Secondary</button>
+                    <button class="danger">Danger</button>
+                    <button class="success">Success</button>
+                    <button disabled>Disabled</button>
+                    <button class="btn-flat">
+                        <i class="fa-solid fa-dice-d20"></i> Flat / icon
+                    </button>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 6. FORM CONTROLS
+            ============================================================= -->
+            <section>
+                <h2>Form controls</h2>
+                <div class="grid-2">
+                    <div class="input-group">
+                        <label for="ex-name">Name</label>
+                        <input
+                            id="ex-name"
+                            type="text"
+                            placeholder="Type a name…"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="ex-type">Type</label>
+                        <select id="ex-type">
+                            <option>Player character</option>
+                            <option>Monster</option>
+                            <option>NPC</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="ex-num">Number</label>
+                        <input id="ex-num" type="number" value="10" />
+                    </div>
+                    <div class="input-group">
+                        <label for="ex-file">File</label>
+                        <input id="ex-file" type="file" />
+                    </div>
+                </div>
+
+                <div class="flex row wrap gap-m align-center">
+                    <label>
+                        <input type="checkbox" checked /> Checkbox
+                    </label>
+                    <label> <input type="radio" name="r" checked /> Radio A </label>
+                    <label> <input type="radio" name="r" /> Radio B </label>
+                </div>
+
+                <div class="input-group">
+                    <label for="ex-notes">Notes</label>
+                    <textarea id="ex-notes" rows="3" placeholder="Notes…"></textarea>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 7. COMPONENTS
+            ============================================================= -->
+            <section>
+                <h2>Panel</h2>
+                <div class="panel">
+                    <div class="panel-header">
+                        <span class="big">Creature inspector</span>
+                        <button class="btn-flat" aria-label="close">×</button>
+                    </div>
+                    <p class="small">
+                        A bordered container with a header divider. Used for
+                        sidebars, sheets, and inspectors.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Toasts</h2>
+                <div class="flex col gap-xxs">
+                    <div class="toast success" role="status">
+                        <span class="prefix">»</span>
+                        <span class="grow">Saved successfully.</span>
+                        <button
+                            class="btn-flat js-dismiss"
+                            aria-label="dismiss"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="toast error" role="status">
+                        <span class="prefix">»</span>
+                        <span class="grow">Something went wrong.</span>
+                        <button
+                            class="btn-flat js-dismiss"
+                            aria-label="dismiss"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="toast info" role="status">
+                        <span class="prefix">»</span>
+                        <span class="grow">Heads up — info toast.</span>
+                        <button
+                            class="btn-flat js-dismiss"
+                            aria-label="dismiss"
+                        >
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Banners</h2>
+                <div class="flex col gap-xs">
+                    <div class="banner">
+                        <span>Default info banner.</span>
+                        <button class="btn-flat js-dismiss" aria-label="dismiss">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="banner success">
+                        <span>Success banner.</span>
+                        <button class="btn-flat js-dismiss" aria-label="dismiss">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="banner error">
+                        <span>Error banner.</span>
+                        <button class="btn-flat js-dismiss" aria-label="dismiss">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="banner prompt">
+                        <span>A new version is available.</span>
+                        <div class="flex row gap-xs">
+                            <button class="danger js-dismiss">Dismiss</button>
+                            <button class="success js-dismiss">Reload</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Chips</h2>
+                <div class="flex row wrap gap-xs">
+                    <span class="chip"
+                        >Poisoned
+                        <button class="chip-x js-dismiss" aria-label="remove">
+                            <i class="fa-solid fa-xmark"></i></button
+                    ></span>
+                    <span class="chip"
+                        >Prone
+                        <button class="chip-x js-dismiss" aria-label="remove">
+                            <i class="fa-solid fa-xmark"></i></button
+                    ></span>
+                    <span class="chip"
+                        >Stunned
+                        <button class="chip-x js-dismiss" aria-label="remove">
+                            <i class="fa-solid fa-xmark"></i></button
+                    ></span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Combo / dropdown</h2>
+                <div class="combo">
+                    <input type="text" value="gob" style="width: 100%" />
+                    <ul class="combo-list">
+                        <li class="combo-item active">
+                            <span>Goblin</span><span class="small">CR 1/4</span>
+                        </li>
+                        <li class="combo-item">
+                            <span>Goblin Boss</span><span class="small">CR 1</span>
+                        </li>
+                        <li class="combo-item">
+                            <span>Hobgoblin</span><span class="small">CR 1/2</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Disclosure</h2>
+                <details class="disclosure">
+                    <summary>Stat block — Goblin</summary>
+                    <div class="disclosure-body">
+                        <p class="small">
+                            Small humanoid (goblinoid), neutral evil. AC 15, HP 7
+                            (2d6). Speed 30 ft. Nimble Escape.
+                        </p>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Two-column grid</h2>
+                <div class="grid-2">
+                    <div class="panel"><span>Column A</span></div>
+                    <div class="panel"><span>Column B</span></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>State utilities</h2>
+                <div class="flex col gap-xxs">
+                    <div class="hover-fill" style="padding: var(--margin-xxs)">
+                        <span>.hover-fill — hover me</span>
+                    </div>
+                    <div
+                        id="active-row"
+                        class="is-active"
+                        style="padding: var(--margin-xxs)"
+                    >
+                        <span>.is-active — inverted (selected line)</span>
+                    </div>
+                    <div class="is-inactive" style="padding: var(--margin-xxs)">
+                        <span>.is-inactive — muted + strikethrough</span>
+                    </div>
+                    <div>
+                        <button id="toggle-active" class="secondary">
+                            Toggle .is-active
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Dialog</h2>
+                <button id="open-dialog">Open dialog</button>
+                <dialog id="ex-dialog">
+                    <div class="panel-header">
+                        <span class="big">Edit creature</span>
+                        <button class="btn-flat" id="close-dialog" aria-label="close">
+                            ×
+                        </button>
+                    </div>
+                    <p class="small">
+                        A native &lt;dialog&gt; centered by the theme. Press Esc or
+                        the × to close.
+                    </p>
+                    <div class="flex row gap-xs justi-between">
+                        <button class="danger" id="close-dialog-2">Cancel</button>
+                        <button class="success" id="close-dialog-3">Save</button>
+                    </div>
+                </dialog>
+            </section>
+        </main>
+
+        <script>
+            // Minimal demo interactivity — not part of the theme.
+            document.querySelectorAll(".js-dismiss").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    // Remove the nearest banner/toast/chip ancestor
+                    const host = btn.closest(
+                        ".toast, .banner, .chip",
+                    );
+                    host?.remove();
+                });
+            });
+
+            const dialog = document.getElementById("ex-dialog");
+            document
+                .getElementById("open-dialog")
+                .addEventListener("click", () => dialog.showModal());
+            ["close-dialog", "close-dialog-2", "close-dialog-3"].forEach((id) =>
+                document
+                    .getElementById(id)
+                    .addEventListener("click", () => dialog.close()),
+            );
+
+            document
+                .getElementById("toggle-active")
+                .addEventListener("click", () =>
+                    document
+                        .getElementById("active-row")
+                        .classList.toggle("is-active"),
+                );
+        </script>
+    </body>
+</html>
