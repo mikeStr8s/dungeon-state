@@ -17,8 +17,8 @@ second**:
 
 ```js
 // bundler (Vite/webpack/etc.)
-import "./theme/reset.css";
-import "./theme/theme.css";
+import './theme/reset.css';
+import './theme/theme.css';
 ```
 
 ```html
@@ -72,8 +72,8 @@ Override any token in your own stylesheet after the imports:
 
 ```css
 :root {
-    --ffh: "Space Grotesk", sans-serif; /* load your own heading font */
-    --color-blue: #82aaff;              /* re-tint the accent */
+	--ffh: 'Space Grotesk', sans-serif; /* load your own heading font */
+	--color-blue: #82aaff; /* re-tint the accent */
 }
 ```
 

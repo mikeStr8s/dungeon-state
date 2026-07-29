@@ -1,0 +1,63 @@
+{
+	"id": "goblin-warren",
+	"name": "The Goblin Warren",
+	"startAt": 480,
+	"seed": 99,
+	"startRoom": "warren-mouth",
+	"rooms": [
+		{
+			"id": "warren-mouth",
+			"name": "1. Cave Mouth",
+			"originalText": "A low, reeking cave opening. Gnawed bones and crude spears litter the mud. Firelight flickers deeper in.",
+			"light": "dim"
+		},
+		{
+			"id": "warren-den",
+			"name": "2. Chief's Den",
+			"originalText": "A smoky chamber hung with tattered banners. A fat goblin chief lounges on a throne of stacked crates.",
+			"light": "bright"
+		},
+		{
+			"id": "warren-larder",
+			"name": "3. Foul Larder",
+			"originalText": "Hooks and barrels line this cramped, stinking store-room. Something still moves in the far barrel.",
+			"light": "dark"
+		}
+	],
+	"entities": [
+		{
+			"id": "warren-d1",
+			"kind": "door",
+			"name": "Hide Curtain",
+			"location": "warren-mouth",
+			"state": "closed",
+			"data": { "travelTime": 2 },
+			"relationships": [{ "type": "connects", "target": "warren-den" }]
+		},
+		{
+			"id": "warren-d2",
+			"kind": "door",
+			"name": "Larder Hatch",
+			"location": "warren-den",
+			"state": "closed",
+			"data": { "travelTime": 1 },
+			"relationships": [{ "type": "connects", "target": "warren-larder" }]
+		},
+		{
+			"id": "goblin-chief",
+			"kind": "creature",
+			"name": "Goblin Chief",
+			"location": "warren-den",
+			"state": "alive",
+			"data": { "hp": 21, "disposition": "hostile", "task": "guard" }
+		},
+		{
+			"id": "warren-torch",
+			"kind": "light",
+			"name": "Wall Torch",
+			"location": "warren-mouth",
+			"state": "unlit",
+			"data": { "duration": 60 }
+		}
+	]
+}

@@ -1,0 +1,136 @@
+{
+	"id": "sample-catacombs",
+	"name": "The Sample Catacombs",
+	"startAt": 600,
+	"seed": 1337,
+	"startRoom": "room-entry",
+	"wandering": {
+		"chancePerCheck": 1.0,
+		"checkEvery": 60,
+		"table": [
+			{ "key": "rat", "name": "Giant Rat", "data": { "hp": 7 } },
+			{ "key": "scout", "name": "Duergar Scout", "data": { "hp": 26 } }
+		]
+	},
+	"rooms": [
+		{
+			"id": "room-entry",
+			"name": "1. Collapsed Entry",
+			"originalText": "A crumbling stair descends into darkness. Rubble chokes the north passage. The air is cold and still.",
+			"light": "dim"
+		},
+		{
+			"id": "room-guardpost",
+			"name": "2. Guard Post",
+			"originalText": "Three bugbears loiter here around a low fire, gnawing on bones. A rack of rusted weapons leans against the east wall.",
+			"light": "bright"
+		},
+		{
+			"id": "room-crypt",
+			"name": "3. Flooded Crypt",
+			"originalText": "Ankle-deep black water fills this vaulted chamber. Six stone sarcophagi line the walls. A faint necromantic hum lingers.",
+			"light": "dark",
+			"data": { "floodRate": 20 }
+		}
+	],
+	"entities": [
+		{
+			"id": "door-entry-guard",
+			"kind": "door",
+			"name": "Iron Door",
+			"location": "room-entry",
+			"state": "closed",
+			"data": { "travelTime": 1 },
+			"relationships": [{ "type": "connects", "target": "room-guardpost" }]
+		},
+		{
+			"id": "door-guard-crypt",
+			"kind": "door",
+			"name": "Sealed Vault Door",
+			"location": "room-guardpost",
+			"state": "locked",
+			"data": { "travelTime": 3 },
+			"relationships": [{ "type": "connects", "target": "room-crypt" }]
+		},
+		{
+			"id": "creature-bugbear-1",
+			"kind": "creature",
+			"name": "Bugbear Sentry",
+			"location": "room-guardpost",
+			"state": "alive",
+			"data": {
+				"hp": 27,
+				"alert": "unaware",
+				"disposition": "hostile",
+				"task": "patrol",
+				"route": ["room-guardpost", "room-entry"],
+				"stepEvery": 30,
+				"routeAnchor": 600
+			},
+			"relationships": [{ "type": "memberOf", "target": "faction-bugbears" }]
+		},
+		{
+			"id": "faction-bugbears",
+			"kind": "faction",
+			"name": "Bugbear Warband",
+			"location": null,
+			"state": "active",
+			"data": {
+				"morale": 60,
+				"resources": 20,
+				"resourceRegen": 2,
+				"territory": ["room-guardpost"],
+				"objective": "Hold the guard post",
+				"relations": { "faction-cult": "enemy" }
+			}
+		},
+		{
+			"id": "faction-cult",
+			"kind": "faction",
+			"name": "Cult of the Deep",
+			"location": null,
+			"state": "active",
+			"data": {
+				"morale": 45,
+				"resources": 35,
+				"resourceRegen": 3,
+				"territory": ["room-crypt"],
+				"objective": "Awaken the vault",
+				"relations": { "faction-bugbears": "enemy" }
+			}
+		},
+		{
+			"id": "creature-cultist-1",
+			"kind": "creature",
+			"name": "Deep Cultist",
+			"location": "room-crypt",
+			"state": "alive",
+			"data": { "hp": 9, "disposition": "hostile", "task": "guard" },
+			"relationships": [{ "type": "memberOf", "target": "faction-cult" }]
+		},
+		{
+			"id": "light-torch-entry",
+			"kind": "light",
+			"name": "Party Torch",
+			"location": "room-entry",
+			"state": "unlit",
+			"data": { "duration": 60 }
+		},
+		{
+			"id": "light-brazier-guard",
+			"kind": "light",
+			"name": "Guard Fire",
+			"location": "room-guardpost",
+			"state": "lit",
+			"data": { "duration": 240, "ignitedAt": 540, "expiresAt": 780 }
+		},
+		{
+			"id": "effect-detect-magic",
+			"kind": "effect",
+			"name": "Detect Magic",
+			"location": "room-crypt",
+			"state": "active",
+			"data": { "endsAt": 610 }
+		}
+	]
+}
